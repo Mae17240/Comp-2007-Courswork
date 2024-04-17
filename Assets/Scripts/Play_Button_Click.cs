@@ -19,6 +19,6 @@ public class Play_Button_Click : MonoBehaviour
 
     public void playSoundEffect()
     {
-        playSound.Play();
+        playSound.Play();  //plays sound effect
     }
 }

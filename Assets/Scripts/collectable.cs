@@ -10,7 +10,7 @@ public class collectable : MonoBehaviour
 
     void Awake() => TotalCoinsCollected++;
 
-    void Update()
+    void Update() //rotation for the trail mix boxes 
     {
         transform.rotation = Quaternion.Euler(0f, Time.time * 100f, 0f);
     }
@@ -21,7 +21,7 @@ public class collectable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             onCollected?.Invoke();
-            Destroy(gameObject);
+            Destroy(gameObject); // gets rid of the boxes once the user collects them.
         }
         
     }

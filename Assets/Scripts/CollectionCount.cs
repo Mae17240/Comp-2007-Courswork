@@ -27,12 +27,12 @@ public class CollectionCount : MonoBehaviour
         if (count >= collectable.TotalCoinsCollected)
         {
             // Trigger the end of the game
-            Game_Manager.EndTheGame(); // Call EndGame() method through the gameManager reference
+            Game_Manager.EndTheGame(); 
         }
     }
 
     void updateCount()
     {
-        text.text = $"{count} / {collectable.TotalCoinsCollected}";
+        text.text = $"{count} / {collectable.TotalCoinsCollected}"; // updates the texc to show how many coins the user has collected.
     }
 }

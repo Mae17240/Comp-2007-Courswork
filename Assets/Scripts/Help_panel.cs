@@ -8,13 +8,13 @@ public class PanelController : MonoBehaviour
     void Start()
     {
         
-        panel.SetActive(false);
+        panel.SetActive(false); //set pannel to false
     }
     
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I)) //check if the user has pressed the key I to bring up the menu.
         {
             panel.SetActive(!panel.activeSelf);
         }

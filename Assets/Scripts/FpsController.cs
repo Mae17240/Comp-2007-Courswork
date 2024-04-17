@@ -7,15 +7,19 @@ using UnityEngine;
 
 public class FpsController : MonoBehaviour
 {
+    //main player camera 
     public Camera mainPlayerCamera;
+
+    //movement 
     public float walkingSpeed = 6f;
     public float runningSpeed = 12f;
-    public float jumpPower = 7f;
+    //jumping 
+    public float jumpPower = 6f;
     public float gravityValue = 10f;
-
+    //look speeds 
     public float lookSpeed = 2f;
     public float lookXlimit = 45f;
-
+    //rotation 
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
@@ -24,17 +28,18 @@ public class FpsController : MonoBehaviour
     CharacterController characterController;
     
     
-    // Start is called before the first frame update
+   
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked; //hiding the cursor / mouse 
         Cursor.visible = false;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+        //fordward and right vectors 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -45,9 +50,11 @@ public class FpsController : MonoBehaviour
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
 
+        // calculate movement Direction
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
 
+        //Jumping 
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = jumpPower;
@@ -56,12 +63,15 @@ public class FpsController : MonoBehaviour
         {
             moveDirection.y = movementDirectionY;
         }
-        if (!characterController.isGrounded)
+        //gravity
+        if (!characterController.isGrounded) 
         {
             moveDirection.y -= gravityValue * Time.deltaTime;
         }
 
         characterController.Move(moveDirection * Time.deltaTime);
+        
+        //looking around (rotation)
         if (canMove)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;

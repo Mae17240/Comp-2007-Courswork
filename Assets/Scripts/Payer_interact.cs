@@ -8,7 +8,7 @@ public class Payer_interact : MonoBehaviour
 
     private void Update() {
 
-        if(Input.GetKeyDown(KeyCode.E)) {
+        if(Input.GetKeyDown(KeyCode.E)) { // pressing e to interact with the npc within range. 
             float npc_interact_range = 2f;
             Collider [] ColliderArray = Physics.OverlapSphere(transform.position, npc_interact_range);
 

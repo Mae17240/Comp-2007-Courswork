@@ -12,7 +12,7 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (transform.position.y < threshiold)
         {
-            transform.position = new Vector3(10.2f, 1.57f, 8.92f);
+            transform.position = new Vector3(10.2f, 1.57f, 8.92f); //resets the player back to the starting co-ordinates.
         }
     }
 }
