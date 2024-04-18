@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 public class Game_Manager : MonoBehaviour
 {
     public int totalCoins; // Total number of coins in the game
-    private int collectedCoins = 0; //coins collected by the player
-    public string nextSceneName = "End_Screen"; 
+    private int collectedCoins = 0; // Coins collected by the player
+    public Timer_script timer; // Reference to your timer script
 
-    // when a coin is collected
+    // When a coin is collected
     public void CollectCoin()
     {
         collectedCoins++;
@@ -15,15 +15,16 @@ public class Game_Manager : MonoBehaviour
         // Check if all coins are collected
         if (collectedCoins >= totalCoins)
         {
-            // Trigger the end of the game
-            EndTheGame();
+            // Trigger any end game actions here if needed
         }
     }
 
-    //end the game and move to the next scene (End_Screen).
+    // End the game
     public void EndTheGame()
     {
-        // Load the next scene when all coins are collected
-        SceneManager.LoadScene(nextSceneName);
+        // Stop the timer
+        timer.timeRunning = false;
+
+        // Trigger any end game actions here if needed
     }
 }

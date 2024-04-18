@@ -7,32 +7,43 @@ public class CollectionCount : MonoBehaviour
     int count;
 
     public Game_Manager Game_Manager; // Reference to the Game_Manager script
+    public collectable collectable; // Reference to the Collectable script or object containing total coins collected
 
     void Awake()
     {
         text = GetComponent<TMPro.TMP_Text>();
     }
 
-    void Start() => updateCount();
+    void Start()
+    {
+        UpdateCount();
+    }
 
-    void OnEnable() => collectable.onCollected += onCollectableCollected;
-    void OnDisable() => collectable.onCollected -= onCollectableCollected;
+    void OnEnable()
+    {
+        collectable.onCollected += OnCollectableCollected;
+    }
 
-    void onCollectableCollected()
+    void OnDisable()
+    {
+        collectable.onCollected -= OnCollectableCollected;
+    }
+
+    void OnCollectableCollected()
     {
         count++;
-        updateCount();
+        UpdateCount();
 
         // Check if all coins are collected
         if (count >= collectable.TotalCoinsCollected)
         {
             // Trigger the end of the game
-            Game_Manager.EndTheGame(); 
+            Game_Manager.EndTheGame();
         }
     }
 
-    void updateCount()
+    void UpdateCount()
     {
-        text.text = $"{count} / {collectable.TotalCoinsCollected}"; // updates the texc to show how many coins the user has collected.
+        text.text = $"{count} / {collectable.TotalCoinsCollected}"; // updates the text to show how many coins the user has collected.
     }
 }
